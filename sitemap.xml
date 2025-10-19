@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/index.html</loc></url>
+  <url><loc>https://example.com/search.html</loc></url>
+  <url><loc>https://example.com/timeline.html</loc></url>
+  <url><loc>https://example.com/quiz.html</loc></url>
+  <url><loc>https://example.com/glossar.html</loc></url>
+  <url><loc>https://example.com/quellen.html</loc></url>
+  <url><loc>https://example.com/impressum.html</loc></url>
+  <url><loc>https://example.com/datenschutz.html</loc></url>
 </urlset>

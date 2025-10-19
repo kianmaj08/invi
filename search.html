@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suche</title>
+  <meta name="description" content="Durchsuche die Abschnitte der Startseite." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <main>
+<section class="section">
+  <div class="container content">
+    <h1>Suche</h1>
+    <input id="q" type="search" placeholder="Suchbegriff eingeben..." class="input" style="width:100%;max-width:560px;">
+    <div id="results" class="stagger-list" style="margin-top:1rem;"></div>
+  </div>
+</section>
+<script>
+async function go() {
+  const idx = await fetch('assets/content-index.json').then(r=>r.json());
+  const q = new URLSearchParams(location.search).get('q') || '';
+  const input = document.getElementById('q');
+  input.value = q;
+  function render(items){
+    const box = document.getElementById('results');
+    box.innerHTML = '';
+    if(items.length===0){ box.innerHTML = '<p>Keine Treffer.</p>'; return; }
+    items.forEach(it=>{
+      const a = document.createElement('a');
+      a.href = 'index.html#'+it.id;
+      a.textContent = it.title + ' – Abschnitt öffnen';
+      const p = document.createElement('p');
+      p.textContent = it.snippet.substring(0, 200) + '…';
+      const wrap = document.createElement('div');
+      wrap.className = 'card';
+      wrap.appendChild(a); wrap.appendChild(p);
+      box.appendChild(wrap);
+    });
+  }
+  function search(query){
+    const ql = query.trim().toLowerCase();
+    if(!ql){ render([]); return; }
+    const res = idx.sections.filter(s => (s.title+s.snippet).toLowerCase().includes(ql));
+    render(res.slice(0, 20));
+  }
+  input.addEventListener('input', e=>search(e.target.value));
+  search(q);
+}
+go();
+</script>
+  </main>
+  <footer class="section alt">
+    <div class="container content">
+      <p><a href="index.html">Startseite</a> · <a href="search.html">Suche</a> · <a href="timeline.html">Zeitleiste</a> · <a href="quiz.html">Quiz</a> · <a href="glossar.html">Glossar</a> · <a href="quellen.html">Quellen</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+      <p>Version 2.0 – generiert am 2025-10-19.</p>
+    </div>
+  </footer>
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }
+  </script>
+</body>
+</html>

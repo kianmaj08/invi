@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz</title>
+  <meta name="description" content="Kurzes Selbsttest-Quiz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <main>
+<section class="section">
+  <div class="container content">
+    <h1>Quiz</h1>
+    <p>Teste dein Wissen. Es werden keine Daten gespeichert.</p>
+    <div id="quiz"></div>
+    <p id="score"></p>
+  </div>
+</section>
+<script>
+const qs = [
+  {q:'Welches Prinzip zielte auf die Rückkehr vorrevolutionärer Verhältnisse?', a:['Restauration','Legitimität','Solidarität'], c:0},
+  {q:'Wozu dient das Mächtegleichgewicht?', a:['Dominanz einer Großmacht','Balance der Kräfte','Abschaffung der Monarchie'], c:1},
+];
+const root = document.getElementById('quiz');
+let score = 0;
+qs.forEach((it,i)=>{
+  const card = document.createElement('div'); card.className='card';
+  const h = document.createElement('h3'); h.textContent = (i+1)+'. '+it.q; card.appendChild(h);
+  it.a.forEach((opt,idx)=>{
+    const btn = document.createElement('button'); btn.textContent = opt; btn.className='btn';
+    btn.onclick = ()=>{
+      if(idx===it.c){ btn.setAttribute('aria-pressed','true'); btn.disabled=true; score++; }
+      else { btn.disabled=true; }
+      document.getElementById('score').textContent = 'Punkte: '+score+' / '+qs.length;
+    };
+    card.appendChild(btn);
+  });
+  root.appendChild(card);
+});
+</script>
+  </main>
+  <footer class="section alt">
+    <div class="container content">
+      <p><a href="index.html">Startseite</a> · <a href="search.html">Suche</a> · <a href="timeline.html">Zeitleiste</a> · <a href="quiz.html">Quiz</a> · <a href="glossar.html">Glossar</a> · <a href="quellen.html">Quellen</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+      <p>Version 2.0 – generiert am 2025-10-19.</p>
+    </div>
+  </footer>
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/service-worker.js'); }
+  </script>
+</body>
+</html>
