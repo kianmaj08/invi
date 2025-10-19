@@ -275,7 +275,49 @@
   font-weight: 700;
 }
 </style>
-</head>
+<style>
+/* === Glow-Button 'Weitere Projekte' === */
+.glow-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 600;
+  background: #0ea5e9; /* cyan-ish */
+  color: #fff;
+  box-shadow: 0 0 18px rgba(14,165,233,0.75), 0 0 42px rgba(14,165,233,0.35);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.glow-fab:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 24px rgba(14,165,233,0.9), 0 0 60px rgba(14,165,233,0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow-fab, .glow-fab:hover {
+    transition: none;
+  }
+}
+@media (max-width: 520px) {
+  .glow-fab {
+    padding: 10px 14px;
+    right: 16px;
+    bottom: 16px;
+    font-size: 14px;
+  }
+}
+/* Dark-mode tweak */
+@media (prefers-color-scheme: dark) {
+  .glow-fab {
+    background: #22d3ee;
+    color: #000;
+    box-shadow: 0 0 18px rgba(34,211,238,0.8), 0 0 42px rgba(34,211,238,0.4);
+  }
+}
+</style></head>
 <body>
   <!-- Scroll Progress -->
   <div id="scrollbar"></div>
@@ -572,5 +614,6 @@
     </button>
   </a>
 </section>
+<a class="glow-fab" href="https://oberstufe.site" target="_blank" rel="noopener" aria-label="Weitere Projekte">Weitere Projekte</a>
 </body>
 </html>
