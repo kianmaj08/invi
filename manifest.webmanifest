@@ -1,0 +1,9 @@
+{
+  "name": "Wiener Kongress – Q1",
+  "short_name": "Kongress",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2eadf",
+  "theme_color": "#f2eadf",
+  "icons": []
+}

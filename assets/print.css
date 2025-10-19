@@ -1,0 +1,1 @@
+@media print { nav, .hero video { display: none !important; } body { color: #000; } }
